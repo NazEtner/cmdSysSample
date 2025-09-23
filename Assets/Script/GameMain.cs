@@ -1,3 +1,4 @@
+using Nananami.CommandPatterns;
 using Nananami.Commands;
 using Nananami.Lib.CmdSys;
 using UnityEngine;
@@ -9,11 +10,13 @@ namespace Nananami
     {
         public static GameMain Instance { get; private set; }
         public CommandScheduler globalScheduler = new CommandScheduler();
+        public CommandPatternTable commandPatternTable = new CommandPatternTable();
 
         void OnEnable()
         {
             Instance = this;
             globalScheduler.EnqueueCommand(new SetInternalVariable<bool>("pauseActors", false));
+            globalScheduler.Execute();
         }
 
         void OnDisable()

@@ -93,7 +93,7 @@ namespace Nananami.Lib.CmdSys
 
         private void m_recordHistory(Command command)
         {
-            while (m_history.Count >= m_schedule_status.maxHistorySize)
+            while (m_history.Count > 0 && m_history.Count >= m_schedule_status.maxHistorySize)
             {
                 m_history.Dequeue();
             }

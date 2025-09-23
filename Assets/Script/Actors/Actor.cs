@@ -22,10 +22,12 @@ namespace Nananami.Actors
                 if (!shouldUpdate) return;
                 m_update();
                 m_scheduler.Execute();
+                m_updateAfterCommandExecution();
             }
         }
 
-        protected abstract void m_update();
+        protected virtual void m_update() { }
+        protected virtual void m_updateAfterCommandExecution(){ }
         protected CommandScheduler m_scheduler = new CommandScheduler();
     }
 }

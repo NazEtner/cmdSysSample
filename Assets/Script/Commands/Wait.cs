@@ -2,6 +2,9 @@ using Nananami.Lib.CmdSys;
 
 namespace Nananami.Commands
 {
+    // 普通に待つだけ。
+    // 1フレームにしたら実行時点での周期を終わらせることができる
+    // globalSchedulerでの使用は推奨しない
     public class Wait : Command
     {
         public Wait(uint frames)
