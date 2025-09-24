@@ -128,6 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 112624806}
+  - component: {fileID: 112624807}
   m_Layer: 5
   m_Name: StatusViewController
   m_TagString: Untagged
@@ -154,6 +155,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &112624807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112624805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0663f91da8a81c4785a8346aacbf8b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Nananami.UI.StatusViewController
+  m_score_text: {fileID: 622730907}
+  m_level_text: {fileID: 1715879850}
+  m_money_text: {fileID: 1504132802}
 --- !u!1 &157900383
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,8 +780,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4526e7a3f65f6834295059780fe84efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Nananami.Actors.Player
-  m_speed: 0.2
-  m_speed_on_slowmode: 0.1
+  m_speed: 0.15
+  m_speed_on_slowmode: 0.0725
   m_player_input: {fileID: 1232232240}
 --- !u!114 &1232232240
 MonoBehaviour:
