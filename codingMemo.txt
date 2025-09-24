@@ -1,0 +1,21 @@
+規則
+・基本的に、書き方はC#の慣習ではなく、C++の慣習に合わせる
+
+命名
+・変数名又は関数名は、50文字を超えない限り省略しない
+・publicなメンバ関数は<PascalCase>
+・publicなメンバ変数は<camelCase>
+・privateなメンバ関数はm_ + <camelCase>
+・privateなメンバ変数はm_ + <snake_case>
+・protectedなメンバはすべてprivateなメンバと同じ命名をする
+・ローカル変数、引数は<camelCase>
+・classは<PascalCase>
+・ファイル名はクラス名に合わせる
+
+スコープ
+・public staticな変数は使用しない
+・public staticな関数はヘルパーでのみ使用する
+・メンバ変数は、できる限りprivateまたはprotectedにする
+
+ファイル
+・各ファイルにはできる限り1つのclassを存在させる
