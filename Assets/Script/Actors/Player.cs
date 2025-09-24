@@ -46,6 +46,8 @@ namespace Nananami.Actors
 
             AutoMoveInitialize(param);
 
+            CollisionInitialize(0.08f, "Player");
+
             m_current_speed = m_speed;
         }
 
@@ -73,15 +75,39 @@ namespace Nananami.Actors
                 Vector2 direction = m_move_input.normalized;
                 float rawAngle = Mathf.Atan2(direction.y, direction.x);
 
+                // 角度を45度刻みに丸める
                 float eightDirAngle = Mathf.Round(rawAngle / (Mathf.PI / 4)) * (Mathf.PI / 4);
 
-                m_scheduler.EnqueueCommand(new SetVariable<float>("angle", eightDirAngle));
-                m_scheduler.EnqueueCommand(new SetVariable<float>("speed", m_current_speed));
+                scheduler.EnqueueCommand(new SetVariable<float>("angle", eightDirAngle));
+                scheduler.EnqueueCommand(new SetVariable<float>("speed", m_current_speed));
             }
             else
             {
-                m_scheduler.EnqueueCommand(new SetVariable<float>("speed", 0f));
+                scheduler.EnqueueCommand(new SetVariable<float>("speed", 0f));
             }
+        }
+
+        protected override void m_updateAfterCommandExecution()
+        {
+            base.m_updateAfterCommandExecution();
+            m_limitPosition();
+        }
+
+        private void m_limitPosition()
+        {
+            const float leftLimit = -8.5f;
+            const float rightLimit = 8.5f;
+            const float upLimit = 4.5f;
+            const float downLimit = -4.5f;
+
+            var pos = transform.position;
+            if (pos.x < leftLimit) pos.x = leftLimit;
+            else if (pos.x > rightLimit) pos.x = rightLimit;
+
+            if (pos.y < downLimit) pos.y = downLimit;
+            else if (pos.y > upLimit) pos.y = upLimit;
+
+            transform.position = pos;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using Nananami.Commands;
+using Nananami.Helpers;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
@@ -24,23 +25,23 @@ namespace Nananami.Actors
             pos.x = param.x;
             pos.y = param.y;
             transform.position = pos;
-            m_scheduler.EnqueueCommand(new SetVariable<float>("angle", param.angle));
-            m_scheduler.EnqueueCommand(new SetVariable<float>("speed", param.speed));
-            m_scheduler.EnqueueCommand(new SetVariable<float>("rotateOffset", param.rotateOffset));
-            m_scheduler.EnqueueCommand(new SetVariable<bool>("rotatable", param.rotatable));
-            m_scheduler.EnqueueCommand(new SetVariable<int>("deletionResistance", param.deletionResistance));
+            scheduler.EnqueueCommand(new SetVariable<float>("angle", param.angle));
+            scheduler.EnqueueCommand(new SetVariable<float>("speed", param.speed));
+            scheduler.EnqueueCommand(new SetVariable<float>("rotateOffset", param.rotateOffset));
+            scheduler.EnqueueCommand(new SetVariable<bool>("rotatable", param.rotatable));
+            scheduler.EnqueueCommand(new SetVariable<int>("deletionResistance", param.deletionResistance));
 
-            m_scheduler.Execute(); // 変数をセットするためにいったん実行しておく
+            scheduler.Execute(); // 変数をセットするためにいったん実行しておく
 
             m_applyTransform();
 
-            m_is_initialized = true;
+            m_is_automove_initialized = true;
         }
 
         protected override void m_update()
         {
             base.m_update();
-            if (!m_is_initialized)
+            if (!m_is_automove_initialized)
             {
                 throw new InvalidOperationException($"This auto move actor is not initialized.");
             }
@@ -86,23 +87,11 @@ namespace Nananami.Actors
 
         protected T m_getVariable<T>(string name)
         {
-            T result = default;
-            bool matched = false;
-
-            m_scheduler.GetVariable(name).Match(
-                intCase: i => { if (typeof(T) == typeof(int)) { result = (T)(object)i; matched = true; } },
-                floatCase: f => { if (typeof(T) == typeof(float)) { result = (T)(object)f; matched = true; } },
-                boolCase: b => { if (typeof(T) == typeof(bool)) { result = (T)(object)b; matched = true; } },
-                stringCase: s => { if (typeof(T) == typeof(string)) { result = (T)(object)s; matched = true; } }
-            );
-
-            if (!matched)
-                throw new InvalidOperationException($"Variable '{name}' is not of type {typeof(T)}.");
-
+            T result = CommandVariableHelper.GetVariable<T>(scheduler, name);
             return result;
         }
 
         private float m_x_delta, m_y_delta;
-        private bool m_is_initialized = false;
+        private bool m_is_automove_initialized = false;
     }
 }

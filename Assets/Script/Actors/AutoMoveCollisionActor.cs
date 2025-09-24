@@ -1,7 +1,6 @@
 using System;
 using Nananami.Collision;
 using Nananami.Commands;
-using Unity.VisualScripting;
 
 namespace Nananami.Actors
 {
@@ -9,12 +8,12 @@ namespace Nananami.Actors
     {
         public void CollisionInitialize(float radius, string groupName)
         {
-            m_scheduler.EnqueueCommand(new SetVariable<float>("radius", radius));
+            scheduler.EnqueueCommand(new SetVariable<float>("radius", radius));
             m_group_name = groupName;
 
-            m_scheduler.Execute();
+            scheduler.Execute();
 
-            m_is_initialized = true;
+            m_is_collision_initialized = true;
         }
 
         public virtual void OnCollision(string groupName)
@@ -25,7 +24,7 @@ namespace Nananami.Actors
         protected override void m_updateAfterCommandExecution()
         {
             base.m_updateAfterCommandExecution();
-            if (!m_is_initialized)
+            if (!m_is_collision_initialized)
             {
                 throw new InvalidOperationException($"This auto move collision actor is not initialized.");
             }
@@ -41,11 +40,11 @@ namespace Nananami.Actors
             var instance = GameMain.Instance;
             if (instance != null)
             {
-                instance.simpleCollider.RegisterCollisionData(m_group_name, collisionData);
+                instance.simpleCollider.RegisterCollisionData(m_group_name, collisionData); // 衝突判定は次のフレームで行われるため、これで表示→衝突の順になるはず
             }
         }
 
-        private bool m_is_initialized = false;
+        private bool m_is_collision_initialized = false;
         private string m_group_name;
     }
 }

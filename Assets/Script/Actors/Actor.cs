@@ -21,13 +21,13 @@ namespace Nananami.Actors
 
                 if (!shouldUpdate) return;
                 m_update();
-                m_scheduler.Execute();
+                scheduler.Execute();
                 m_updateAfterCommandExecution();
             }
         }
 
         protected virtual void m_update() { }
         protected virtual void m_updateAfterCommandExecution(){ }
-        protected CommandScheduler m_scheduler = new CommandScheduler();
+        public CommandScheduler scheduler = new CommandScheduler();
     }
 }
