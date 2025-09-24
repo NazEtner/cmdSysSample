@@ -20,12 +20,7 @@ namespace Nananami.Actors
         {
             m_move_input = value.Get<Vector2>();
         }
-
-        void OnCollisionEnter2D(Collision2D collision)
-        {
-            Debug.Log("Hit?");
-        }
-
+        
         void Awake()
         {
             if (m_player_input == null)
@@ -49,7 +44,7 @@ namespace Nananami.Actors
                 deletionResistance = 1,
             };
 
-            Initialize(param);
+            AutoMoveInitialize(param);
 
             m_current_speed = m_speed;
         }

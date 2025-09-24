@@ -18,7 +18,7 @@ namespace Nananami.Actors
 
     public class AutoMoveActor : Actor
     {
-        public void Initialize(AutoMoveActorInitializationParameter param)
+        public void AutoMoveInitialize(AutoMoveActorInitializationParameter param)
         {
             var pos = transform.position;
             pos.x = param.x;

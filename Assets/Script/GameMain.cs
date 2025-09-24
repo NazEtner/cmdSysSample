@@ -1,3 +1,4 @@
+using Nananami.Collision;
 using Nananami.CommandPatterns;
 using Nananami.Commands;
 using Nananami.Lib.CmdSys;
@@ -11,6 +12,7 @@ namespace Nananami
         public static GameMain Instance { get; private set; }
         public CommandScheduler globalScheduler = new CommandScheduler();
         public CommandPatternTable commandPatternTable = new CommandPatternTable();
+        public SimpleCollider simpleCollider = new SimpleCollider();
 
         void OnEnable()
         {
@@ -28,6 +30,7 @@ namespace Nananami
         {
             if (Instance == this)
             {
+                simpleCollider.DetectCollision();
                 globalScheduler.Execute();
             }
         }
