@@ -1,16 +1,20 @@
 Copyright 2025 Nananami(NazEt).
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
+Permission is hereby granted, free of charge, to any person or organization obtaining a copy
 of this software source code (the "Software") to:
 
-1. Copy the Software for personal use.
-2. Modify the Software for personal use.
+1. Copy the Software.
+2. Modify the Software.
 
 Restrictions:
 
-1. Redistribution of the Software in source code form, whether modified or unmodified, is strictly prohibited.
+1. Redistribution of the Software in source code form, whether modified or unmodified, is strictly prohibited,
+   except when distributed within a closed community where membership requires explicit approval or invitation from existing members, 
+   and is not freely open to the public.
 2. Redistribution of executable or binary forms is permitted only if the Software has been modified.
-3. Redistribution of modified source code is allowed only with explicit prior written permission from the original author.
+3. Redistribution of modified source code outside of such a closed community is allowed only with explicit prior written permission from the original author.
+4. Notwithstanding the above restrictions, the original author may grant explicit permission to redistribute 
+   modified source code without this license, effectively allowing the license to be removed entirely for that copy.
 
 Disclaimer:
 
