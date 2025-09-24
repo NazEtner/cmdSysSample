@@ -49,6 +49,19 @@ namespace Nananami.Actors
             CollisionInitialize(0.08f, "Player");
 
             m_current_speed = m_speed;
+
+            var instance = GameMain.Instance;
+            if (instance != null)
+            {
+                var globalScheduler = instance.globalScheduler;
+                globalScheduler.EnqueueCommand(new SetVariable<int>("gameScore", 0));
+                globalScheduler.EnqueueCommand(new SetVariable<int>("gameLevel", 1));
+                globalScheduler.EnqueueCommand(new SetVariable<int>("gameMoney", 0));
+            }
+            else
+            {
+                Debug.LogError("GameMain instance is null.");
+            }
         }
 
         protected override void m_update()

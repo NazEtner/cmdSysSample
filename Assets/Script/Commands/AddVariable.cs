@@ -4,6 +4,7 @@ using Nananami.Lib.CmdSys;
 
 namespace Nananami.Commands
 {
+    // Tはint又はfloatにしてください
     public class AddVariable<T> : Command
     {
         public AddVariable(string name, T value)
@@ -23,16 +24,14 @@ namespace Nananami.Commands
 
                 T value = CommandVariableHelper.GetVariable<T>(status.scheduler, m_name);
 
-                // valueはこの時点で、int or floatなので、これでいいはずです（拡張性は落ちてしまいますが、仕方ないですね）
+                // valueはこの時点で、int or floatなので、これでいいはずです（拡張性は落ちてしまいますが、dynamicは使えないので仕方ないです）
                 if (typeof(T) == typeof(int))
                 {
                     value = (T)(object)((int)(object)value + (int)(object)m_value);
-                    status.variables[m_name].SetValue(value);
                 }
                 else if (typeof(T) == typeof(float))
                 {
                     value = (T)(object)((float)(object)value + (float)(object)m_value);
-                    status.variables[m_name].SetValue(value);
                 }
                 else
                 {
