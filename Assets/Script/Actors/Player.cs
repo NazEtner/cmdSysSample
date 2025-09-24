@@ -5,7 +5,7 @@ using Nananami.Commands;
 
 namespace Nananami.Actors
 {
-    public class Player : AutoMoveActor
+    public class Player : AutoMoveCollisionActor
     {
         [SerializeField] private float m_speed;
         [SerializeField] private float m_speed_on_slowmode;
@@ -20,7 +20,7 @@ namespace Nananami.Actors
         {
             m_move_input = value.Get<Vector2>();
         }
-        
+
         void Awake()
         {
             if (m_player_input == null)
