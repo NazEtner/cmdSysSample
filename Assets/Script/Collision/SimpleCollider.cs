@@ -39,8 +39,8 @@ namespace Nananami.Collision
                         {
                             if (m_isColliding(groupA[a], groupB[b]))
                             {
-                                groupA[a].collisionActor?.OnCollision(groupBName);
-                                groupB[b].collisionActor?.OnCollision(groupAName);
+                                groupA[a].collisionActor?.OnCollision(groupBName, groupB[b].collisionActor);
+                                groupB[b].collisionActor?.OnCollision(groupAName, groupA[a].collisionActor);
                             }
                         }
                     }

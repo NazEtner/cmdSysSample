@@ -16,7 +16,7 @@ namespace Nananami.Actors
             m_is_collision_initialized = true;
         }
 
-        public virtual void OnCollision(string groupName)
+        public virtual void OnCollision(string groupName, AutoMoveCollisionActor actor)
         {
 
         }
