@@ -16,6 +16,14 @@ namespace Nananami.Actors
 
         private Vector2 m_move_input;
 
+        public override void OnCollision(string groupName, AutoMoveCollisionActor actor)
+        {
+            if (groupName == "EnemyOrBullet")
+            {
+                actor.scheduler.EnqueueCommand(new AddVariable<int>("deletionResistance", -100));
+            }
+        }
+
         public void OnMove(InputValue value)
         {
             m_move_input = value.Get<Vector2>();
@@ -62,6 +70,9 @@ namespace Nananami.Actors
             {
                 Debug.LogError("GameMain instance is null.");
             }
+
+            scheduler.EnqueueCommand(new SetVariable<int>("damage", 0));
+            scheduler.Execute();
         }
 
         protected override void m_update()
@@ -108,8 +119,8 @@ namespace Nananami.Actors
 
         private void m_limitPosition()
         {
-            const float leftLimit = -8.5f;
-            const float rightLimit = 8.5f;
+            const float leftLimit = -8.0f;
+            const float rightLimit = 8.0f;
             const float upLimit = 4.5f;
             const float downLimit = -4.5f;
 

@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Nananami
 {
-    public class PrefabInstantiator : MonoBehaviour
+    public class PrefabInstantiator
     {
         public GameObject InstantiatePrefab(string path)
         {
-            return Instantiate(m_loadPrefab(path));
+            return Object.Instantiate(m_loadPrefab(path));
         }
 
         public T InstantiatePrefab<T>(string path) where T : Component
@@ -33,6 +33,6 @@ namespace Nananami
             return res;
         }
 
-        Dictionary<string, GameObject> m_cache = new Dictionary<string, GameObject>();
+        private Dictionary<string, GameObject> m_cache = new Dictionary<string, GameObject>();
     }
 }
