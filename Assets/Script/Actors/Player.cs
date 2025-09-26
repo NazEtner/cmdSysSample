@@ -20,7 +20,7 @@ namespace Nananami.Actors
         {
             if (groupName == "EnemyOrBullet")
             {
-                actor.scheduler.EnqueueCommand(new AddVariable<int>("deletionResistance", -100));
+                ((OffScreenAutoDeletable)actor).Damage(100);
             }
         }
 

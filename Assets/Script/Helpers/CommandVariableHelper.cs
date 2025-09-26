@@ -17,6 +17,8 @@ namespace Nananami.Helpers
                 stringCase: s => { if (typeof(T) == typeof(string)) { result = (T)(object)s; matched = true; } }
             );
 
+            
+
             if (!matched)
                 throw new InvalidOperationException($"Variable '{name}' is not of type {typeof(T)}.");
 

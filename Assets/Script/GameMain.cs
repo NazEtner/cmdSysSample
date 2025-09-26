@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using Mono.Cecil;
 using Nananami.Actors;
 using Nananami.Collision;
 using Nananami.CommandPatterns;
+using Nananami.CommandPatterns.TableInitializers;
 using Nananami.Commands;
 using Nananami.Lib.CmdSys;
 using UnityEngine;
@@ -20,18 +22,21 @@ namespace Nananami
         void OnEnable()
         {
             Instance = this;
+
             globalScheduler.EnqueueCommand(new SetInternalVariable<bool>("pauseActors", false));
             globalScheduler.Execute();
+
+            new CommonInitializer().Initialize(commandPatternTable);
 
             var tInit = new AutoMoveActorInitializationParameter
             {
                 x = 0,
                 y = 0,
                 angle = -Mathf.PI / 2,
-                speed = 0.008f,
+                speed = 0.1f,
                 deletionResistance = 100,
             };
-            globalScheduler.EnqueueCommand(new CreateAutoMoveActor("Prefabs/Enemy", tInit));
+            globalScheduler.EnqueueCommand(new CreateAutoMoveActor("Prefabs/Enemy", tInit, new List<string>() { "LongDeceleration", "GoRight" }));
         }
 
         void OnDisable()

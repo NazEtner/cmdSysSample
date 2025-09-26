@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Nananami.CommandPatterns
 {
@@ -6,7 +7,7 @@ namespace Nananami.CommandPatterns
     {
         public void AddCommandPattern(string name, CommandPattern cmdPattern)
         {
-            m_patterns.Add(name, cmdPattern);
+            m_patterns[name] = cmdPattern;
         }
 
         public CommandPattern GetCommandPattern(string name)
@@ -19,6 +20,6 @@ namespace Nananami.CommandPatterns
             throw new KeyNotFoundException($"Pattern '{name}' was not found.");
         }
 
-        private Dictionary<string, CommandPattern> m_patterns;
+        private Dictionary<string, CommandPattern> m_patterns = new Dictionary<string, CommandPattern>();
     }
 }

@@ -25,6 +25,8 @@ namespace Nananami.Actors
             pos.x = param.x;
             pos.y = param.y;
             transform.position = pos;
+            scheduler.EnqueueCommand(new SetVariable<float>("x", param.x));
+            scheduler.EnqueueCommand(new SetVariable<float>("y", param.y));
             scheduler.EnqueueCommand(new SetVariable<float>("angle", param.angle));
             scheduler.EnqueueCommand(new SetVariable<float>("speed", param.speed));
             scheduler.EnqueueCommand(new SetVariable<float>("rotateOffset", param.rotateOffset));
@@ -51,6 +53,9 @@ namespace Nananami.Actors
         {
             m_updatePosition();
             m_applyTransform();
+
+            scheduler.EnqueueCommand(new SetVariable<float>("x", transform.position.x));
+            scheduler.EnqueueCommand(new SetVariable<float>("y", transform.position.y));
         }
 
         private void m_applyTransform()

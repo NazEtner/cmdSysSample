@@ -1,13 +1,12 @@
 using Nananami.Commands;
-using UnityEngine;
 
-namespace Nananami.Actors
+namespace Nananami.Actors.Bullets
 {
-    public class Enemy : OffScreenAutoDeletable
+    public class CircleBullet : OffScreenAutoDeletable
     {
         void Awake()
         {
-            CollisionInitialize(0.20f, "EnemyOrBullet");
+            CollisionInitialize(0.03f, "EnemyOrBullet");
 
             scheduler.EnqueueCommand(new SetVariable<float>("offScreenDeleteRate", 30.0f));
             scheduler.Execute();
