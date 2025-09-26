@@ -14,7 +14,7 @@ namespace Nananami.Lib.CmdSys
         public void Execute()
         {
             m_previous_result.endPeriod = false;
-            while (m_shouldContinuePeriod() && m_canBeExecuteNextCommand())
+            while (m_shouldContinuePeriod() && m_canExecuteNextCommand())
             {
                 if (m_shouldBeChangeCurrentCommand())
                 {
@@ -28,7 +28,7 @@ namespace Nananami.Lib.CmdSys
                 m_previous_result = m_current_command.Execute(ref m_schedule_status);
             }
 
-            if (!m_canBeExecuteNextCommand() && m_shouldBeChangeCurrentCommand())
+            if (!m_canExecuteNextCommand() && m_shouldBeChangeCurrentCommand())
             {
                 m_schedule_status.locked = false;
                 m_current_command = null;
@@ -87,8 +87,15 @@ namespace Nananami.Lib.CmdSys
             throw new KeyNotFoundException($"Variable '{name}' was not found.");
         }
 
+        public void SetVariableImmediate<T>(string name, T value)
+        {
+            CommandVariable result = new CommandVariable();
+            result.SetValue(value);
+            m_schedule_status.variables[name] = result;
+        }
+
         private bool m_shouldContinuePeriod() { return !m_previous_result.endPeriod; }
-        private bool m_canBeExecuteNextCommand() { return m_command_queue.Count != 0; }
+        private bool m_canExecuteNextCommand() { return m_command_queue.Count != 0 || !m_shouldBeChangeCurrentCommand(); }
         private bool m_shouldBeChangeCurrentCommand() { return m_previous_result.expired || m_current_command == null; }
 
         private void m_recordHistory(Command command)

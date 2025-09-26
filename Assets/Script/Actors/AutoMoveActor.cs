@@ -54,8 +54,8 @@ namespace Nananami.Actors
             m_updatePosition();
             m_applyTransform();
 
-            scheduler.EnqueueCommand(new SetVariable<float>("x", transform.position.x));
-            scheduler.EnqueueCommand(new SetVariable<float>("y", transform.position.y));
+            scheduler.SetVariableImmediate("x", transform.position.x);
+            scheduler.SetVariableImmediate("y", transform.position.y);
         }
 
         private void m_applyTransform()

@@ -33,38 +33,58 @@ namespace Nananami.CommandPatterns.Bullet
 
             if (m_force_odd && (ways & 1) == 0) ways += 1;
 
-            float x = CommandVariableHelper.GetVariable<float>(scheduler, "x");
-            float y = CommandVariableHelper.GetVariable<float>(scheduler, "y");
+            float x = 0f;
+            float y = 0f;
 
-            var playerObject = GameObject.FindGameObjectWithTag("Player");
-            if (playerObject == null) return;
-            var playerTransform = playerObject.transform;
-
-            float space = m_range / ways;
-
-            // n-wayの中心からways / 2 space分戻して、偶数だったら0.5 spaceだけオフセットを減らしてるだけ
-            // ((ways + 1) & 1) → (ways + 1) 偶奇入れ替え。 & 1 左オペランドが奇数だったら1、偶数だったら0
-            float angle = Mathf.Atan2(playerTransform.position.y - y, playerTransform.position.x - x) - space * ((ways / 2) - ((ways + 1) & 1) * 0.5f);
-
-            string prefabPath = $"Prefabs/Bullet{m_bullet_kind}";
-
-            for (int i = 0; i < ways; ++i)
+            scheduler.EnqueueCommand(new ExecuteFunction((ref ScheduleStatus status) =>
             {
-                var initParam = new AutoMoveActorInitializationParameter
+                x = CommandVariableHelper.GetVariable<float>(status.scheduler, "x");
+                y = CommandVariableHelper.GetVariable<float>(status.scheduler, "y");
+                var playerObject = GameObject.FindGameObjectWithTag("Player");
+                if (playerObject == null)
                 {
-                    x = x,
-                    y = y, // 同名だからわかりづらいな
-                    angle = angle,
-                    speed = m_speed,
-                    rotateOffset = 0,
-                    rotatable = true,
-                    deletionResistance = m_deletion_resistance
+                    return new CommandResult
+                    {
+                        endPeriod = false,
+                        expired = true,
+                        recordable = true,
+                    };
+                } 
+                var playerTransform = playerObject.transform;
+
+                float space = m_range / ways;
+
+                // n-wayの中心からways / 2 space分戻して、偶数だったら0.5 spaceだけオフセットを減らしてるだけ
+                // ((ways + 1) & 1) → (ways + 1) 偶奇入れ替え。 & 1 左オペランドが奇数だったら1、偶数だったら0
+                float angle = Mathf.Atan2(playerTransform.position.y - y, playerTransform.position.x - x) - space * ((ways / 2) - ((ways + 1) & 1) * 0.5f);
+
+                string prefabPath = $"Prefabs/Bullet{m_bullet_kind}";
+
+                for (int i = 0; i < ways; ++i)
+                {
+                    var initParam = new AutoMoveActorInitializationParameter
+                    {
+                        x = x,
+                        y = y, // 同名だからわかりづらいな
+                        angle = angle,
+                        speed = m_speed,
+                        rotateOffset = 0,
+                        rotatable = true,
+                        deletionResistance = m_deletion_resistance
+                    };
+
+                    new CreateAutoMoveActor(prefabPath, initParam).Execute(ref status);
+
+                    angle += space;
+                }
+
+                return new CommandResult
+                {
+                    endPeriod = false,
+                    expired = true,
+                    recordable = true,
                 };
-
-                scheduler.EnqueueCommand(new CreateAutoMoveActor(prefabPath, initParam));
-
-                angle += space;
-            }
+            }));
         }
 
         private uint m_base_ways;

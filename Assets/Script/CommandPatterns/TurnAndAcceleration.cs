@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Nananami.Commands;
 using Nananami.Helpers;
 using Nananami.Lib.CmdSys;

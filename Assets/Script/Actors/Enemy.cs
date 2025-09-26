@@ -12,5 +12,10 @@ namespace Nananami.Actors
             scheduler.EnqueueCommand(new SetVariable<float>("offScreenDeleteRate", 30.0f));
             scheduler.Execute();
         }
+
+        protected override void m_updateAfterCommandExecution()
+        {
+            base.m_updateAfterCommandExecution();
+        }
     }
 }

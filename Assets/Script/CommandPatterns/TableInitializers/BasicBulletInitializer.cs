@@ -12,13 +12,15 @@ namespace Nananami.CommandPatterns.TableInitializers
             public uint BaseWay;
             public float Speed;
             public float LevelRate;
+            public bool ForceOdd;
 
-            public Difficulty(string name, uint baseWay, float speed, float levelRate)
+            public Difficulty(string name, uint baseWay, float speed, float levelRate, bool forceOdd = false)
             {
                 Name = name;
                 BaseWay = baseWay;
                 Speed = speed;
                 LevelRate = levelRate;
+                ForceOdd = forceOdd;
             }
         }
 
@@ -39,9 +41,9 @@ namespace Nananami.CommandPatterns.TableInitializers
             var colors = new List<string> { "White", "Red", "Purple", "Blue", "Sky", "Gleen", "Yellow", "Orange" };
             var difficulties = new List<Difficulty>
             {
-                new Difficulty("Easy", 4, 0.3f, 1.3f),
-                new Difficulty("Normal", 6, 0.4f, 1.5f),
-                new Difficulty("Hard", 8, 0.6f, 1.9f)
+                new Difficulty("Easy", 4, 0.03f, 1.3f),
+                new Difficulty("Normal", 6, 0.04f, 1.5f),
+                new Difficulty("Hard", 8, 0.06f, 1.9f, true)
             };
             var ranges = new List<Range>
             {
@@ -60,7 +62,7 @@ namespace Nananami.CommandPatterns.TableInitializers
                     {
                         string patternName = $"{range.Name}{difficulty.Name}NWayToPlayer{color}";
                         table.AddCommandPattern(patternName,
-                            new NWayToPlayer(difficulty.BaseWay, difficulty.LevelRate, false, range.Value, difficulty.Speed, (uint)colorIndex));
+                            new NWayToPlayer(difficulty.BaseWay, difficulty.LevelRate, difficulty.ForceOdd, range.Value, difficulty.Speed, (uint)colorIndex));
                     }
                 }
             }

@@ -27,16 +27,25 @@ namespace Nananami
             globalScheduler.Execute();
 
             new CommonInitializer().Initialize(commandPatternTable);
+            new BasicBulletInitializer().Initialize(commandPatternTable);
 
             var tInit = new AutoMoveActorInitializationParameter
             {
                 x = 0,
-                y = 0,
+                y = 4,
                 angle = -Mathf.PI / 2,
                 speed = 0.1f,
                 deletionResistance = 100,
             };
-            globalScheduler.EnqueueCommand(new CreateAutoMoveActor("Prefabs/Enemy", tInit, new List<string>() { "LongDeceleration", "GoRight" }));
+            globalScheduler.EnqueueCommand(new CreateAutoMoveActor("Prefabs/Enemy", tInit, new List<string>()
+                {
+                "LongDeceleration",
+                "MiddleHardNWayToPlayerRed",
+                "MiddleNormalNWayToPlayerRed",
+                "MiddleEasyNWayToPlayerRed",
+                "GoRight"
+                }
+            ));
         }
 
         void OnDisable()
