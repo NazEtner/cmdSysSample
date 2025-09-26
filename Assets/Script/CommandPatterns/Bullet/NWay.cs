@@ -6,11 +6,11 @@ using Nananami.Commands;
 
 namespace Nananami.CommandPatterns.Bullet
 {
-    public class NWayToPlayer : CommandPattern
+    public class NWay : CommandPattern
     {
         // Ways = baseWays + level * (levelRate - 1)
         // forceOdd == trueで、Waysが偶数の場合Ways += 1
-        public NWayToPlayer(uint baseWays, float levelRate, bool forceOdd, float range, float speed, uint bulletKind, int deletionRegistance = 40)
+        public NWay(float centerAngle, uint baseWays, float levelRate, bool forceOdd, float range, float speed, uint bulletKind, int deletionRegistance = 40)
         {
             m_base_ways = baseWays;
             m_level_rate = levelRate;
@@ -19,6 +19,7 @@ namespace Nananami.CommandPatterns.Bullet
             m_speed = speed;
             m_bullet_kind = bulletKind;
             m_deletion_resistance = deletionRegistance;
+            m_center_angle = centerAngle;
         }
 
         public override void EnqueueCommands(CommandScheduler scheduler)
@@ -33,30 +34,16 @@ namespace Nananami.CommandPatterns.Bullet
 
             if (m_force_odd && (ways & 1) == 0) ways += 1;
 
-            float x = 0f;
-            float y = 0f;
-
             scheduler.EnqueueCommand(new ExecuteFunction((ref ScheduleStatus status) =>
             {
-                x = CommandVariableHelper.GetVariable<float>(status.scheduler, "x");
-                y = CommandVariableHelper.GetVariable<float>(status.scheduler, "y");
-                var playerObject = GameObject.FindGameObjectWithTag("Player");
-                if (playerObject == null)
-                {
-                    return new CommandResult
-                    {
-                        endPeriod = false,
-                        expired = true,
-                        recordable = true,
-                    };
-                } 
-                var playerTransform = playerObject.transform;
+                float x = CommandVariableHelper.GetVariable<float>(status.scheduler, "x");
+                float y = CommandVariableHelper.GetVariable<float>(status.scheduler, "y");
 
                 float space = m_range / ways;
 
                 // n-wayの中心からways / 2 space分戻して、偶数だったら0.5 spaceだけオフセットを減らしてるだけ
                 // ((ways + 1) & 1) → (ways + 1) 偶奇入れ替え。 & 1 左オペランドが奇数だったら1、偶数だったら0
-                float angle = Mathf.Atan2(playerTransform.position.y - y, playerTransform.position.x - x) - space * ((ways / 2) - ((ways + 1) & 1) * 0.5f);
+                float angle = m_center_angle - space * ((ways / 2) - ((ways + 1) & 1) * 0.5f);
 
                 string prefabPath = $"Prefabs/Bullet{m_bullet_kind}";
 
@@ -94,5 +81,6 @@ namespace Nananami.CommandPatterns.Bullet
         private float m_speed;
         private uint m_bullet_kind;
         private int m_deletion_resistance;
+        private float m_center_angle;
     }
 }
