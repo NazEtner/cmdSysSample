@@ -21,10 +21,10 @@ namespace Nananami.Actors
     {
         public void AutoMoveInitialize(AutoMoveActorInitializationParameter param)
         {
-            var pos = transform.position;
+            var pos = transform.localPosition;
             pos.x = param.x;
             pos.y = param.y;
-            transform.position = pos;
+            transform.localPosition = pos;
             scheduler.EnqueueCommand(new SetVariable<float>("x", param.x));
             scheduler.EnqueueCommand(new SetVariable<float>("y", param.y));
             scheduler.EnqueueCommand(new SetVariable<float>("angle", param.angle));
@@ -54,16 +54,16 @@ namespace Nananami.Actors
             m_updatePosition();
             m_applyTransform();
 
-            scheduler.SetVariableImmediate("x", transform.position.x);
-            scheduler.SetVariableImmediate("y", transform.position.y);
+            scheduler.SetVariableImmediate("x", transform.localPosition.x);
+            scheduler.SetVariableImmediate("y", transform.localPosition.y);
         }
 
         private void m_applyTransform()
         {
-            var pos = transform.position;
+            var pos = transform.localPosition;
             pos.x += m_x_delta;
             pos.y += m_y_delta;
-            transform.position = pos;
+            transform.localPosition = pos;
 
             // 回転を適用
             bool rotatable = m_getVariable<bool>("rotatable");

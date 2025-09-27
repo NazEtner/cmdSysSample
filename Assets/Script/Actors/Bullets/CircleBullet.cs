@@ -9,6 +9,7 @@ namespace Nananami.Actors.Bullets
             CollisionInitialize(0.03f, "EnemyOrBullet");
 
             scheduler.EnqueueCommand(new SetVariable<float>("offScreenDeleteRate", 30.0f));
+            scheduler.EnqueueCommand(new SetVariable<bool>("grazed", false)); // 弾とはグレイズする
             scheduler.Execute();
         }
     }

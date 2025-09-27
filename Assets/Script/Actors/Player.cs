@@ -65,6 +65,9 @@ namespace Nananami.Actors
                 globalScheduler.EnqueueCommand(new SetVariable<int>("gameScore", 0));
                 globalScheduler.EnqueueCommand(new SetVariable<int>("gameLevel", 1));
                 globalScheduler.EnqueueCommand(new SetVariable<int>("gameMoney", 0));
+                globalScheduler.EnqueueCommand(new SetVariable<int>("gameExp", 0));
+                globalScheduler.EnqueueCommand(new SetVariable<int>("gameExpAddition", 10));
+                globalScheduler.EnqueueCommand(new SetVariable<int>("gameMoneyAddition", 1));
             }
             else
             {
@@ -124,14 +127,14 @@ namespace Nananami.Actors
             const float upLimit = 4.5f;
             const float downLimit = -4.5f;
 
-            var pos = transform.position;
+            var pos = transform.localPosition;
             if (pos.x < leftLimit) pos.x = leftLimit;
             else if (pos.x > rightLimit) pos.x = rightLimit;
 
             if (pos.y < downLimit) pos.y = downLimit;
             else if (pos.y > upLimit) pos.y = upLimit;
 
-            transform.position = pos;
+            transform.localPosition = pos;
         }
     }
 }

@@ -3,6 +3,7 @@ using Nananami.Lib.CmdSys;
 using Nananami.Actors;
 using UnityEngine;
 using Nananami.Commands;
+using System;
 
 namespace Nananami.CommandPatterns.Bullet
 {
@@ -10,7 +11,7 @@ namespace Nananami.CommandPatterns.Bullet
     {
         // Ways = baseWays + level * (levelRate - 1)
         // forceOdd == trueで、Waysが偶数の場合Ways += 1
-        public NWay(float centerAngle, uint baseWays, float levelRate, bool forceOdd, float range, float speed, uint bulletKind, int deletionRegistance = 40)
+        public NWay(Func<float, float, float> centerAngle, uint baseWays, float levelRate, bool forceOdd, float range, float speed, uint bulletKind, int deletionRegistance = 40)
         {
             m_base_ways = baseWays;
             m_level_rate = levelRate;
@@ -43,7 +44,7 @@ namespace Nananami.CommandPatterns.Bullet
 
                 // n-wayの中心からways / 2 space分戻して、偶数だったら0.5 spaceだけオフセットを減らしてるだけ
                 // ((ways + 1) & 1) → (ways + 1) 偶奇入れ替え。 & 1 左オペランドが奇数だったら1、偶数だったら0
-                float angle = m_center_angle - space * ((ways / 2) - ((ways + 1) & 1) * 0.5f);
+                float angle = m_center_angle(x, y) - space * ((ways / 2) - ((ways + 1) & 1) * 0.5f);
 
                 string prefabPath = $"Prefabs/Bullet{m_bullet_kind}";
 
@@ -81,6 +82,6 @@ namespace Nananami.CommandPatterns.Bullet
         private float m_speed;
         private uint m_bullet_kind;
         private int m_deletion_resistance;
-        private float m_center_angle;
+        private Func<float, float, float> m_center_angle;
     }
 }

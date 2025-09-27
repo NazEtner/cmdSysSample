@@ -19,11 +19,13 @@ namespace Nananami.UI
 
                 int score = 0;
                 int level = 0;
+                int exp = 0;
                 int money = 0;
                 try
                 {
                     score = CommandVariableHelper.GetVariable<int>(instance.globalScheduler, "gameScore");
                     level = CommandVariableHelper.GetVariable<int>(instance.globalScheduler, "gameLevel");
+                    exp = CommandVariableHelper.GetVariable<int>(instance.globalScheduler, "gameExp");
                     money = CommandVariableHelper.GetVariable<int>(instance.globalScheduler, "gameMoney");
                 }
                 catch (Exception)
@@ -33,7 +35,7 @@ namespace Nananami.UI
                 }
 
                 m_score_text.text = "スコア：" + score;
-                m_level_text.text = "レベル：" + level;
+                m_level_text.text = "レベル：" + level + " (" + exp + ")";
                 m_money_text.text = "資金　：" + money;
             }
         }

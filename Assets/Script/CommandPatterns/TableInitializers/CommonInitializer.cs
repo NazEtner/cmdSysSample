@@ -15,6 +15,11 @@ namespace Nananami.CommandPatterns.TableInitializers
             table.AddCommandPattern("LongAcceleration", new Acceleration(80));
 
             table.AddCommandPattern("GoRight", new TurnAndAcceleration(Mathf.PI / 2, 2.0f, 120));
+
+            for (uint i = 1; i <= 30; ++i)
+            {
+                table.AddCommandPattern($"Wait{i}", new Wait(i));
+            }
         }
     }
 }

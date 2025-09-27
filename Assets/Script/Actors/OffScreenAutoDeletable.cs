@@ -1,6 +1,4 @@
 using System;
-using System.Diagnostics;
-using Nananami.Commands;
 using Nananami.Helpers;
 
 namespace Nananami.Actors
@@ -31,7 +29,7 @@ namespace Nananami.Actors
 
             int result = 0; // これが最低値
 
-            var pos = transform.position;
+            var pos = transform.localPosition;
 
             // 計算した評価値のうち最大のものを取得
             result = Math.Max(result, (int)((leftLimit - pos.x) * evaluetionRate));

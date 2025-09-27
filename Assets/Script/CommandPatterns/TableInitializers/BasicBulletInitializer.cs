@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Nananami.CommandPatterns.Bullet;
 using UnityEngine;
@@ -62,7 +63,33 @@ namespace Nananami.CommandPatterns.TableInitializers
                     {
                         string patternName = $"{range.Name}{difficulty.Name}NWayToPlayer{color}";
                         table.AddCommandPattern(patternName,
-                            new NWayToPlayer(difficulty.BaseWay, difficulty.LevelRate, difficulty.ForceOdd, range.Value, difficulty.Speed, (uint)colorIndex));
+                            new NWay((float x, float y) =>
+                            {
+                                var playerObject = GameObject.FindGameObjectWithTag("Player");
+                                    if (playerObject == null)
+                                    {
+                                        return 0f;
+                                    }
+                                    var playerTransform = playerObject.transform;
+                                    return Mathf.Atan2(playerTransform.position.y - y, playerTransform.position.x - x);
+                            },
+                            difficulty.BaseWay, difficulty.LevelRate, difficulty.ForceOdd, range.Value, difficulty.Speed, (uint)colorIndex));
+
+                        patternName = $"{range.Name}{difficulty.Name}NWayDown{color}";
+                        table.AddCommandPattern(patternName,
+                            new NWay((float x, float y) =>
+                            {
+                                return -Mathf.PI / 2;
+                            },
+                            difficulty.BaseWay, difficulty.LevelRate, difficulty.ForceOdd, range.Value, difficulty.Speed, (uint)colorIndex));
+
+                        patternName = $"{range.Name}{difficulty.Name}NWayRandom{color}";
+                        table.AddCommandPattern(patternName,
+                            new NWay((float x, float y) =>
+                            {
+                                return UnityEngine.Random.Range(0, Mathf.PI * 2);
+                            },
+                            difficulty.BaseWay, difficulty.LevelRate, difficulty.ForceOdd, range.Value, difficulty.Speed, (uint)colorIndex));
                     }
                 }
             }
