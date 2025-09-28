@@ -14,7 +14,7 @@ namespace Nananami.Actors
         // rotateOffset -> 見た目の角度オフセット(rotatableに影響されずに適用される、ラジアン)
         public float angle, speed, rotateOffset;
         public bool rotatable; // 見た目をangleに応じて回転させるか
-        public int deletionResistance; // 削除への抵抗性（挙動はアクターによる。例えば弾は値を減らさずに比較、敵は値を減らして比較）0以下になったら削除
+        public int deletionResistance; // 削除への抵抗性（挙動はアクターによる。）0以下になったら削除
     }
 
     public class AutoMoveActor : Actor

@@ -63,7 +63,7 @@ namespace Nananami.Actors
             {
                 var globalScheduler = instance.globalScheduler;
                 globalScheduler.EnqueueCommand(new SetVariable<int>("gameScore", 0));
-                globalScheduler.EnqueueCommand(new SetVariable<int>("gameLevel", 1));
+                globalScheduler.EnqueueCommand(new SetVariable<int>("gameLevel", 15));
                 globalScheduler.EnqueueCommand(new SetVariable<int>("gameMoney", 0));
                 globalScheduler.EnqueueCommand(new SetVariable<int>("gameExp", 0));
                 globalScheduler.EnqueueCommand(new SetVariable<int>("gameExpAddition", 10));

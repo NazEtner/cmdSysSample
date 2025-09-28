@@ -12,5 +12,11 @@ namespace Nananami.Actors.Bullets
             scheduler.EnqueueCommand(new SetVariable<bool>("grazed", false)); // 弾とはグレイズする
             scheduler.Execute();
         }
+
+        protected override void m_updateAfterCommandExecution()
+        {
+            base.m_updateAfterCommandExecution();
+            m_damage = 0;
+        }
     }
 }
