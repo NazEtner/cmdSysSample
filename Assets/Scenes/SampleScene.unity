@@ -244,6 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameOverController
   m_canvas: {fileID: 388410477}
+  m_score_text: {fileID: 658590860}
 --- !u!4 &214460173
 Transform:
   m_ObjectHideFlags: 0
