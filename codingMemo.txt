@@ -2,7 +2,6 @@
 ・基本的に、書き方はC#の慣習ではなく、C++の慣習に合わせる
 
 命名
-・引数とローカル変数以外の変数名又は関数名は、50文字を超えない限り省略しない
 ・publicなメンバ関数は<PascalCase>
 ・publicなメンバ変数は<camelCase>
 ・privateなメンバ関数はm_ + <camelCase>
