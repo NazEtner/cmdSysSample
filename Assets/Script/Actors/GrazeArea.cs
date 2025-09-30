@@ -35,8 +35,10 @@ namespace Nananami.Actors
                 //globalSchedulerに数フレーム使うコマンドはエンキューされない（ことが期待される）のでこれでいいはず
                 int gameMoneyAddition = CommandVariableHelper.GetVariable<int>(instance.globalScheduler, "gameMoneyAddition");
                 int gameExpAddition = CommandVariableHelper.GetVariable<int>(instance.globalScheduler, "gameExpAddition");
+                int gameScoreAddition = CommandVariableHelper.GetVariable<int>(instance.globalScheduler, "gameScoreAddition");
                 instance.globalScheduler.EnqueueCommand(new AddVariable<int>("gameMoney", gameMoneyAddition));
                 instance.globalScheduler.EnqueueCommand(new AddVariable<int>("gameExp", gameExpAddition));
+                instance.globalScheduler.EnqueueCommand(new AddVariable<int>("gameScore", gameScoreAddition));
                 
                 actor.scheduler.SetVariableImmediate<bool>("grazed", true);
             }

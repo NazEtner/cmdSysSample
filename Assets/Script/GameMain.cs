@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using Mono.Cecil;
 using Nananami.Actors;
 using Nananami.Collision;
 using Nananami.CommandPatterns;
 using Nananami.CommandPatterns.TableInitializers;
 using Nananami.Commands;
 using Nananami.Lib.CmdSys;
+using Nananami.Lib.Messaging;
 using UnityEngine;
 
 namespace Nananami
@@ -14,10 +14,11 @@ namespace Nananami
     public class GameMain : MonoBehaviour
     {
         public static GameMain Instance { get; private set; }
-        public CommandScheduler globalScheduler = new CommandScheduler();
-        public CommandPatternTable commandPatternTable = new CommandPatternTable();
-        public SimpleCollider simpleCollider = new SimpleCollider();
-        public PrefabInstantiator prefabInstantiator = new PrefabInstantiator();
+        public CommandScheduler globalScheduler { get; private set; } = new CommandScheduler();
+        public CommandPatternTable commandPatternTable { get; private set; } = new CommandPatternTable();
+        public MessageTray<string> messageTray { get; private set; } = new MessageTray<string>();
+        public SimpleCollider simpleCollider { get; private set; } = new SimpleCollider();
+        public PrefabInstantiator prefabInstantiator { get; private set; } = new PrefabInstantiator();
 
         void OnEnable()
         {
@@ -28,24 +29,6 @@ namespace Nananami
 
             new CommonInitializer().Initialize(commandPatternTable);
             new BasicBulletInitializer().Initialize(commandPatternTable);
-
-            var tInit = new AutoMoveActorInitializationParameter
-            {
-                x = 0,
-                y = 4,
-                angle = -Mathf.PI / 2,
-                speed = 0.1f,
-                deletionResistance = 100,
-            };
-            globalScheduler.EnqueueCommand(new CreateAutoMoveActor("Prefabs/Enemy", tInit, new List<string>()
-                {
-                "LongDeceleration",
-                "MiddleHardNWayToPlayerRed",
-                "MiddleNormalNWayToPlayerRed",
-                "MiddleEasyNWayToPlayerRed",
-                "GoRight"
-                }
-            ));
         }
 
         void OnDisable()

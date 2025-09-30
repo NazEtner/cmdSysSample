@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Nananami
 {
-    public class EnemySpawner : MonoBehaviour
+    public class EnemySpawner : Actor
     {
         void Awake()
         {
@@ -59,7 +59,7 @@ namespace Nananami
             m_builder.Set("Wait0", new List<string>() { "LongDeceleration", "MiddleDeceleration" });
         }
 
-        void Update()
+        protected override void m_update()
         {
             if (m_shouldSpawn())
             {
