@@ -9,18 +9,20 @@ of this software source code (the "Software") to:
 Restrictions:
 
 1. Redistribution of the Software in source code form, whether modified or unmodified, is strictly prohibited,
-   except when distributed within a closed community where membership requires explicit approval or invitation from existing members, 
+   except when distributed within a closed community where membership requires explicit approval or invitation from existing members,
    and is not freely open to the public.
-2. Redistribution of executable or binary forms is permitted only if the Software has been modified.
+2. Redistribution of executable or binary forms is permitted only if:
+   - The Software has been modified, or
+   - The redistributed work incorporates only a portion of the Software’s source code and does not consist of the Software in its entirety.
 3. Redistribution of modified source code outside of such a closed community is allowed only with explicit prior written permission from the original author.
-4. Notwithstanding the above restrictions, the original author may grant explicit permission to redistribute 
+4. Notwithstanding the above restrictions, the original author may grant explicit permission to redistribute
    modified source code without this license, effectively allowing the license to be removed entirely for that copy.
 
 Disclaimer:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
-PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE 
-LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
-TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE
 USE OR OTHER DEALINGS IN THE SOFTWARE.
