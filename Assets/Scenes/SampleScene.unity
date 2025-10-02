@@ -361,7 +361,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388410476}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -651,6 +651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed4c091c6bb822e419c9234ec4ea18d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Nananami.ScoreController
+  m_increase_rate: 1.7
 --- !u!4 &603795785
 Transform:
   m_ObjectHideFlags: 0
@@ -945,8 +946,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u30B9\u30B3\u30A2 : "
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 010e40ad6b5082145adb635ce7950402, type: 2}
-  m_sharedMaterial: {fileID: 3675358378345371868, guid: 010e40ad6b5082145adb635ce7950402, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 802c286911499454c945a2fc3d289c93, type: 2}
+  m_sharedMaterial: {fileID: -1008215480451396001, guid: 802c286911499454c945a2fc3d289c93, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
