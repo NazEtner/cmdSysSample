@@ -19,7 +19,7 @@ namespace Nananami
 
         public GameObject InstantiatePrefab(string path)
         {
-            return UnityEngine.Object.Instantiate(m_loadPrefab(path));
+            return Object.Instantiate(m_loadPrefab(path));
         }
 
         public T InstantiatePrefab<T>(string path) where T : Component
