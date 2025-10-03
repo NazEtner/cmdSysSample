@@ -34,6 +34,7 @@ namespace Nananami
         void OnDisable()
         {
             if (Instance == this) Instance = null;
+            prefabInstantiator.Destruct();
         }
 
         void Update()
