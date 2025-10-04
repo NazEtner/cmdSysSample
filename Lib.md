@@ -1,7 +1,7 @@
 # ライブラリの解説
 ## 収録されているライブラリ
-* CmdSys
-* Messaging
+* CmdSys (Assets/Script/Library/CmdSys)
+* Messaging (Assets/Script/Library/Messaging)
 ## CmdSys
 ### 概要
 オブジェクト等の動作をコマンドで制御するための機能を提供します
