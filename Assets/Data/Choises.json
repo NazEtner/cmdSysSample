@@ -1,5 +1,7 @@
 {
     "choises": [
-        
+        {
+            "text": "", "levelRequired": 0, "messages": [{"name": "", "contents": ""}]
+        }
     ]
 }
