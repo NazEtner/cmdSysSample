@@ -32,15 +32,14 @@ namespace Nananami.Actors
                 bool isGrazed = CommandVariableHelper.GetVariable<bool>(actor.scheduler, "grazed");
                 if (isGrazed) return;
 
-                //globalSchedulerに数フレーム使うコマンドはエンキューされない（ことが期待される）のでこれでいいはず
+                // TODO: MoneyManagerを実装し、messageTrayを使う実装にする
                 int gameMoneyAddition = CommandVariableHelper.GetVariable<int>(instance.globalScheduler, "gameMoneyAddition");
-                int gameExpAddition = CommandVariableHelper.GetVariable<int>(instance.globalScheduler, "gameExpAddition");
-                int gameScoreAddition = CommandVariableHelper.GetVariable<int>(instance.globalScheduler, "gameScoreAddition");
                 instance.globalScheduler.EnqueueCommand(new AddVariable<int>("gameMoney", gameMoneyAddition));
-                instance.globalScheduler.EnqueueCommand(new AddVariable<int>("gameExp", gameExpAddition));
-                instance.globalScheduler.EnqueueCommand(new AddVariable<int>("gameScore", gameScoreAddition));
+
+                instance.messageTray.Post("ScoreControllerMessage", "Grazed");
+                instance.messageTray.Post("LevelControllerMessage", "Grazed");
                 
-                actor.scheduler.SetVariableImmediate<bool>("grazed", true);
+                actor.scheduler.SetVariableImmediate("grazed", true);
             }
         }
     }

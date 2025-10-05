@@ -64,20 +64,19 @@ namespace Nananami.Actors
             if (instance != null)
             {
                 var globalScheduler = instance.globalScheduler;
-                globalScheduler.EnqueueCommand(new SetVariable<int>("gameScore", 0));
-                globalScheduler.EnqueueCommand(new SetVariable<int>("gameLevel", 1));
+                //globalScheduler.EnqueueCommand(new SetVariable<int>("gameScore", 0));
+                //globalScheduler.EnqueueCommand(new SetVariable<int>("gameLevel", 1));
                 globalScheduler.EnqueueCommand(new SetVariable<int>("gameMoney", 0));
-                globalScheduler.EnqueueCommand(new SetVariable<int>("gameExp", 0));
-                globalScheduler.EnqueueCommand(new SetVariable<int>("gameExpAddition", 10));
+                //globalScheduler.EnqueueCommand(new SetVariable<int>("gameExp", 0));
+                //globalScheduler.EnqueueCommand(new SetVariable<int>("gameExpAddition", 10));
                 globalScheduler.EnqueueCommand(new SetVariable<int>("gameMoneyAddition", 1));
-                globalScheduler.EnqueueCommand(new SetVariable<int>("gameScoreAddition", 100));
+                //globalScheduler.EnqueueCommand(new SetVariable<int>("gameScoreAddition", 100));
             }
             else
             {
                 Debug.LogError("GameMain instance is null.");
             }
 
-            scheduler.EnqueueCommand(new SetVariable<int>("damage", 0));
             scheduler.Execute();
         }
 
