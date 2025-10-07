@@ -4,14 +4,14 @@ using System.Collections.Generic;
 namespace Nananami.Rougelite
 {
     [Serializable]
-    public class ChoiseData
+    public class ChoiceData
     {
-        public List<Choise> choises;
+        public List<Choice> choices;
     }
 
 
     [Serializable]
-    public class Choise
+    public class Choice
     {
         public int price;
         public double priceIncreaseRate;

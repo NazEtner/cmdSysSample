@@ -10,6 +10,7 @@ namespace Nananami
     {
         [SerializeField] private int m_level_up_exp;
         [SerializeField] private float m_level_up_exp_increase_rate;
+        [SerializeField] private float m_exp_addition_increase_rate;
 
         void Start()
         {
@@ -46,6 +47,12 @@ namespace Nananami
                         m_level_up_exp = (int)(m_level_up_exp * m_level_up_exp_increase_rate);
                         instance.messageTray.Post("ScoreControllerMessage", "ScoreAddtionIncrease");
                         instance.messageTray.Post("LevelUpUI", "Enable");
+                    }
+                    if (messageState == "ExpAdditionIncrease")
+                    {
+                        int gameExpAddition = CommandVariableHelper.GetVariable<int>(instance.globalScheduler, "gameExpAddition");
+                        int increased = (int)(gameExpAddition * m_exp_addition_increase_rate);
+                        instance.globalScheduler.SetVariableImmediate("gameExpAddition", increased);
                     }
                 }
             }

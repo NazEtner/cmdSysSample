@@ -8,6 +8,7 @@ namespace Nananami
     public class ScoreController : Actor
     {
         [SerializeField] private float m_increase_rate;
+        [SerializeField] private float m_bullet_delete_score_rate = 0.5f;
 
         void Start()
         {
@@ -28,6 +29,11 @@ namespace Nananami
                 {
                     int gameScoreAddition = CommandVariableHelper.GetVariable<int>(instance.globalScheduler, "gameScoreAddition");
                     instance.globalScheduler.EnqueueCommand(new AddVariable<int>("gameScore", gameScoreAddition));
+                }
+                if (message == "BulletDeleted")
+                {
+                    int gameScoreAddition = CommandVariableHelper.GetVariable<int>(instance.globalScheduler, "gameScoreAddition");
+                    instance.globalScheduler.EnqueueCommand(new AddVariable<int>("gameScore", (int)(gameScoreAddition * m_bullet_delete_score_rate)));
                 }
                 if (message == "ScoreAddtionIncrease")
                 {

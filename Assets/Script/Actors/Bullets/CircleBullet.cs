@@ -1,4 +1,6 @@
+using UnityEngine;
 using Nananami.Commands;
+using Nananami.Helpers;
 
 namespace Nananami.Actors.Bullets
 {
@@ -16,7 +18,39 @@ namespace Nananami.Actors.Bullets
         protected override void m_updateAfterCommandExecution()
         {
             base.m_updateAfterCommandExecution();
-            m_damage = 0;
+        }
+
+        void OnDisable()
+        {
+            var instance = GameMain.Instance;
+            if (instance == null) return;
+            bool isGrazed = CommandVariableHelper.GetVariable<bool>(scheduler, "grazed");
+            if (isGrazed)
+            {
+                if (instance.globalBulletStatus.grazedBulletDeleteScoreProbability <= Random.Range(0.0f, 1.0f))
+                {
+                    instance.messageTray.Post("ScoreControllerMessage", "BulletDeleted");
+                }
+            }
+
+            if (m_damage != 0 && instance.globalBulletStatus.deletionChainRadius != 0.0f)
+            {
+                var deletionChain = instance.prefabInstantiator.InstantiatePrefab<DeletionChain>("Prefabs/DeletionChain");
+                if (deletionChain != null)
+                {
+                    var param = new AutoMoveActorInitializationParameter
+                    {
+                        x = transform.position.x,
+                        y = transform.position.y,
+                        angle = 0.0f,
+                        speed = 0.0f,
+                        rotateOffset = 0.0f,
+                        rotatable = false,
+                        deletionResistance = 2147483647,
+                    };
+                    deletionChain.AutoMoveInitialize(param);
+                }
+            }
         }
     }
 }

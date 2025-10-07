@@ -1,8 +1,8 @@
 {
-    "choises": [
+    "choices": [
         {
             "price": 5, "priceIncreaseRate": 1.3,
-            "text": "弾とかすったときに、稀にその弾を消すようになる", "levelRequired": 0, "maxDuplicate": 5, 
+            "text": "弾とかすったときに、稀にその弾を消すようになる", "levelRequired": 3, "maxDuplicate": 5, 
             "messages": [{"name": "GrazeEffect", "contents": "IncreaseBulletDeletionProbability"}]
         },
         {
@@ -12,42 +12,47 @@
         },
         {
             "price": 12, "priceIncreaseRate": 2.0,
-            "text": "スコアの増加量が上昇する", "levelRequired": 3, "maxDuplicate": 13, 
+            "text": "スコアの増加量が上昇する", "levelRequired": 1, "maxDuplicate": 13, 
             "messages": [{"name": "ScoreControllerMessage", "contents": "ScoreAddtionIncrease"}]
         },
         {
             "price": 6, "priceIncreaseRate": 1.8,
-            "text": "かすり判定が少し広くなる", "levelRequired": 0, "maxDuplicate": 10, 
+            "text": "かすり判定が少し広くなる", "levelRequired": 1, "maxDuplicate": 10, 
             "messages": [{"name": "GrazeEffect", "contents": "ExpandGrazeRadius"}]
         },
         {
             "price": 24, "priceIncreaseRate": 1.8,
-            "text": "弾とかすったとき、稀に画面全体の弾を消すことがある", "levelRequired": 2, "maxDuplicate": 10, 
+            "text": "弾とかすったとき、稀に画面全体の弾を消すことがある", "levelRequired": 3, "maxDuplicate": 10, 
             "messages": [{"name": "GrazeEffect", "contents": "IncreaseAllBulletDeletionProbability"}]
         },
         {
-            "price": 75, "priceIncreaseRate": 2.4,
+            "price": 75, "priceIncreaseRate": 4.4,
             "text": "すぐにレベルを上げる", "levelRequired": 6, "maxDuplicate": 9999, 
             "messages": [{"name": "LevelControllerMessage", "contents": "LevelUp"}]
         },
         {
-            "price": 26, "priceIncreaseRate": 2.6,
+            "price": 280, "priceIncreaseRate": 4.5,
             "text": "弾が消えた時、周囲の弾も消えるようになる", "levelRequired": 2, "maxDuplicate": 7,
             "messages": [{"name": "BulletEffect", "contents": "ExpandChainDeletionRadius"}]
         },
         {
             "price": 12, "priceIncreaseRate": 1.9,
-            "text": "一度かすった弾が消えたときに、稀に追加でスコアを得られる", "levelRequired": 2, "maxDuplicate": 10,
+            "text": "一度かすった弾が消えたときに、稀に追加でスコアを得られる", "levelRequired": 1, "maxDuplicate": 10,
             "messages": [{"name": "BulletEffect", "contents": "IncreaseGrazedBulletDeleteScoreProbability"}]
         },
         {
-            "price": 8, "priceIncreaseRate": 1.4,
-            "text": "資金の増加量が上昇する", "levelRequired": 0, "maxDuplicate": 9999,
-            "messages": [{"name": "MoneyControllerMessage", "contents": "MoneyAdditionIncrease"}]
+            "price": 8, "priceIncreaseRate": 4.2,
+            "text": "資金の増加量が上昇する(効果の強さは重ねる度に減少します)", "levelRequired": 1, "maxDuplicate": 9999,
+            "messages": [{"name": "MoneyControllerMessage", "contents": "MoneyAdditionIncrease"}, {"name": "MoneyControllerMessage", "contents": "DecreaseMoneyAdditionIncreaseRate"}]
+        },
+        {
+            "price": 6, "priceIncreaseRate": 1.4,
+            "text": "経験値の増加量が上昇する", "levelRequired": 1, "maxDuplicate": 9999,
+            "messages": [{"name": "LevelControllerMessage", "contents": "ExpAdditionIncrease"}]
         },
         {
             "price": 12, "priceIncreaseRate": 2.0,
-            "text": "稀に複数回弾とかすれるようになる", "levelRequired": 0, "maxDuplicate": 9999,
+            "text": "稀に複数回弾とかすれるようになる", "levelRequired": 2, "maxDuplicate": 12,
             "messages": [{"name": "GrazeEffect", "contents": "IncreaseGrazeIgnoreProbability"}]
         }
     ]

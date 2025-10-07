@@ -297,7 +297,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 199135339}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 199135341}
+        m_TargetAssemblyTypeName: Nananami.Choise, Assembly-CSharp
+        m_MethodName: OnClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &199135339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,7 +361,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Nananami.Choise
   m_choise_text: {fileID: 2013238242}
-  m_ui_index: 1
+  m_button: {fileID: 199135338}
+  m_level_up_ui_controller: {fileID: 935458577}
 --- !u!1 &214460171
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,7 +808,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 358029313}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 358029315}
+        m_TargetAssemblyTypeName: Nananami.Choise, Assembly-CSharp
+        m_MethodName: OnClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &358029313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -847,7 +872,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Nananami.Choise
   m_choise_text: {fileID: 839559992}
-  m_ui_index: 2
+  m_button: {fileID: 358029312}
+  m_level_up_ui_controller: {fileID: 935458577}
 --- !u!1 &388410476
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,6 +1294,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fca4e97a65fa72408b13b9262b97a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Nananami.Actors.GrazeArea
+  m_bullet_deletion_probability_increase_value: 0.08
+  m_all_bullet_deletion_probability_increase_value: 0.008
+  m_graze_ignore_probability_increase_value: 0.038
+  m_radius_expand_rate: 1.09
 --- !u!1 &603795783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,7 +1327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed4c091c6bb822e419c9234ec4ea18d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Nananami.ScoreController
-  m_increase_rate: 1.7
+  m_increase_rate: 1.2
+  m_bullet_delete_score_rate: 0.5
 --- !u!4 &603795785
 Transform:
   m_ObjectHideFlags: 0
@@ -1835,7 +1866,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Nananami.LevelController
   m_level_up_exp: 150
-  m_level_up_exp_increase_rate: 1.4
+  m_level_up_exp_increase_rate: 1.1
+  m_exp_addition_increase_rate: 1.2
 --- !u!4 &846364808
 Transform:
   m_ObjectHideFlags: 0
@@ -1956,7 +1988,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Nananami.LevelUpUIController
   m_canvas: {fileID: 279421852}
-  m_choises: []
+  m_choices:
+  - {fileID: 1102044095}
+  - {fileID: 199135341}
+  - {fileID: 358029315}
+  m_money_text: {fileID: 1664649291}
 --- !u!4 &935458578
 Transform:
   m_ObjectHideFlags: 0
@@ -2055,7 +2091,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1102044093}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1102044095}
+        m_TargetAssemblyTypeName: Nananami.Choise, Assembly-CSharp
+        m_MethodName: OnClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1102044093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2107,7 +2155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Nananami.Choise
   m_choise_text: {fileID: 1827330368}
-  m_ui_index: 0
+  m_button: {fileID: 1102044092}
+  m_level_up_ui_controller: {fileID: 935458577}
 --- !u!1 &1107459508
 GameObject:
   m_ObjectHideFlags: 0
@@ -3474,6 +3523,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827330366}
   m_CullTransparentMesh: 1
+--- !u!1 &1906484901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1906484903}
+  - component: {fileID: 1906484902}
+  m_Layer: 0
+  m_Name: MoneyController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1906484902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906484901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49773ea96be8cfa45ab5205be852c572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Nananami.MoneyController
+  m_money_addition_increase_rate: 1.5
+  m_money_addition_increase_rate_decrease_rate: 0.92
+--- !u!4 &1906484903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906484901}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 512.0188, y: 381.78894, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1985735579
 GameObject:
   m_ObjectHideFlags: 0
@@ -3689,6 +3784,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013238240}
   m_CullTransparentMesh: 1
+--- !u!1001 &991749678525780093
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3195097950238902695, guid: 2737f8ae17d91d54fbe2cf019250d6e3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 512.0188
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195097950238902695, guid: 2737f8ae17d91d54fbe2cf019250d6e3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 381.78894
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195097950238902695, guid: 2737f8ae17d91d54fbe2cf019250d6e3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195097950238902695, guid: 2737f8ae17d91d54fbe2cf019250d6e3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195097950238902695, guid: 2737f8ae17d91d54fbe2cf019250d6e3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195097950238902695, guid: 2737f8ae17d91d54fbe2cf019250d6e3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195097950238902695, guid: 2737f8ae17d91d54fbe2cf019250d6e3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195097950238902695, guid: 2737f8ae17d91d54fbe2cf019250d6e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195097950238902695, guid: 2737f8ae17d91d54fbe2cf019250d6e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195097950238902695, guid: 2737f8ae17d91d54fbe2cf019250d6e3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477893480281687811, guid: 2737f8ae17d91d54fbe2cf019250d6e3, type: 3}
+      propertyPath: m_Name
+      value: AllBulletAndEnemyDeleteArea
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2737f8ae17d91d54fbe2cf019250d6e3, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3707,3 +3859,5 @@ SceneRoots:
   - {fileID: 214460173}
   - {fileID: 846364808}
   - {fileID: 603795785}
+  - {fileID: 1906484903}
+  - {fileID: 991749678525780093}

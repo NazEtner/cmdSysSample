@@ -15,14 +15,22 @@ namespace Nananami.Actors
         private InputAction m_slow_action;
 
         private Vector2 m_move_input;
+        private int m_hit_permit_count = 0;
 
         public override void OnCollision(string groupName, AutoMoveCollisionActor actor)
         {
             if (groupName == "EnemyOrBullet")
             {
                 ((OffScreenAutoDeletable)actor).Damage(100);
-                var instance = GameMain.Instance;
-                instance.messageTray.Post("GameOverControllerMessage", "GameOver");
+                if (m_hit_permit_count <= 0)
+                {
+                    var instance = GameMain.Instance;
+                    instance.messageTray.Post("GameOverControllerMessage", "GameOver");
+                }
+                else
+                {
+                    ((OffScreenAutoDeletable)actor).Damage(1000); // 無敵時間を実装するのは面倒なので、敵をほぼ確実に倒すようにする(合計1,100ダメージ)
+                }
             }
         }
 
@@ -64,13 +72,6 @@ namespace Nananami.Actors
             if (instance != null)
             {
                 var globalScheduler = instance.globalScheduler;
-                //globalScheduler.EnqueueCommand(new SetVariable<int>("gameScore", 0));
-                //globalScheduler.EnqueueCommand(new SetVariable<int>("gameLevel", 1));
-                globalScheduler.EnqueueCommand(new SetVariable<int>("gameMoney", 0));
-                //globalScheduler.EnqueueCommand(new SetVariable<int>("gameExp", 0));
-                //globalScheduler.EnqueueCommand(new SetVariable<int>("gameExpAddition", 10));
-                globalScheduler.EnqueueCommand(new SetVariable<int>("gameMoneyAddition", 1));
-                //globalScheduler.EnqueueCommand(new SetVariable<int>("gameScoreAddition", 100));
             }
             else
             {
@@ -119,7 +120,21 @@ namespace Nananami.Actors
         protected override void m_updateAfterCommandExecution()
         {
             base.m_updateAfterCommandExecution();
+            m_handleMessages();
             m_limitPosition();
+        }
+
+        private void m_handleMessages()
+        {
+            var instance = GameMain.Instance;
+            if (instance == null) return;
+            while (instance.messageTray.TryQuery("PlayerEffect", out string messageState))
+            {
+                if (messageState == "IncrementHitPermitCount")
+                {
+                    m_hit_permit_count++;
+                }
+            }
         }
 
         private void m_limitPosition()

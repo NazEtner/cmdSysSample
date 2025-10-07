@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Nananami.Commands;
+using Nananami.Helpers;
 using Nananami.Rougelite;
 using TMPro;
 using UnityEngine;
@@ -9,9 +10,11 @@ namespace Nananami
     class LevelUpUIController : MonoBehaviour
     {
         [SerializeField] private Canvas m_canvas;
-        [SerializeField] private List<Choise> m_choises;
+        [SerializeField] private List<Choice> m_choices;
+        [SerializeField] private TextMeshProUGUI m_money_text;
         private LotteryMachine m_lottery;
         private List<int> m_choise_indexes = new List<int>();
+
         void Awake()
         {
             m_canvas.enabled = false;
@@ -27,28 +30,48 @@ namespace Nananami
                 {
                     if (m_lottery == null)
                     {
-                        m_lottery = new LotteryMachine("Data/Choises.json");
+                        m_lottery = new LotteryMachine("Data/Choices.json");
                     }
+                    m_lottery.UpdateChoiseState();
                     instance.globalScheduler.EnqueueCommand(new SetInternalVariable<bool>("pauseActors", true));
                     m_canvas.enabled = true;
-                    ChangeChoisesText();
+                    m_changeChoises();
                 }
             }
         }
 
-        void ChangeChoisesText()
+        private void m_changeChoises()
         {
+            int count = 0;
             m_choise_indexes.Clear();
-            foreach (var choise in m_choises)
+            foreach (var choice in m_choices)
             {
-                choise.Clear();
-                if (m_lottery.TryDrawLottery(out string text, out int index))
+                choice.Clear();
+                if (m_lottery.TryDrawLottery(out string text, out int index, out bool enabled))
                 {
                     m_choise_indexes.Add(index);
-                    choise.SetText(text);
-                    choise.index = index;
+                    choice.SetText(text);
+                    choice.SetButtonState(enabled);
+                    choice.index = index;
+                    count++;
                 }
             }
+
+            if(count == 0) { OnQuitClicked(); }
+
+            var instance = GameMain.Instance;
+            int gameMoney = 0;
+            if (instance != null)
+            {
+                gameMoney = CommandVariableHelper.GetVariable<int>(instance.globalScheduler, "gameMoney");
+            }
+            m_money_text.text = $"資金 : {gameMoney}";
+        }
+
+        public void OnChoosed(int index)
+        {
+            m_lottery.Choise(index);
+            m_changeChoises();
         }
 
         public void OnQuitClicked()

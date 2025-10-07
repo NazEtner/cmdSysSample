@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Nananami.Actors;
+using Nananami.Actors.Bullets;
 using Nananami.Collision;
 using Nananami.CommandPatterns;
 using Nananami.CommandPatterns.TableInitializers;
@@ -19,6 +20,7 @@ namespace Nananami
         public MessageTray<string> messageTray { get; private set; } = new MessageTray<string>();
         public SimpleCollider simpleCollider { get; private set; } = new SimpleCollider();
         public PrefabInstantiator prefabInstantiator { get; private set; } = new PrefabInstantiator();
+        public GlobalBulletStatus globalBulletStatus { get; private set; } = new GlobalBulletStatus();
 
         void OnEnable()
         {
@@ -43,6 +45,7 @@ namespace Nananami
             {
                 simpleCollider.DetectCollision();
                 globalScheduler.Execute();
+                globalBulletStatus.HandleMessages();
             }
         }
     }
