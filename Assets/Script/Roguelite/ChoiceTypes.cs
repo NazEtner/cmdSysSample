@@ -4,27 +4,27 @@ using System.Collections.Generic;
 namespace Nananami.Rougelite
 {
     [Serializable]
-    public struct ChoiseData
+    public class ChoiseData
     {
-        public List<Choise> choises { get; set; }
+        public List<Choise> choises;
     }
 
 
     [Serializable]
-    public struct Choise
+    public class Choise
     {
-        public int price { get; set; }
-        public double priceIncreaseRate { get; set; }
-        public string text { get; set; }
-        public int levelRequired { get; set; }
-        public int maxDuplicate { get; set; }
-        public List<Message> messages { get; set; }
+        public int price;
+        public double priceIncreaseRate;
+        public string text;
+        public int levelRequired;
+        public int maxDuplicate;
+        public List<Message> messages;
     }
 
     [Serializable]
-    public struct Message
+    public class Message
     {
-        public string name { get; set; }
-        public string contents { get; set; }
+        public string name;
+        public string contents;
     }
 }

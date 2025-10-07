@@ -17,7 +17,7 @@
         },
         {
             "price": 6, "priceIncreaseRate": 1.8,
-            "text": "かすり判定が少し広くなる", "levelRequired": 2, "maxDuplicate": 10, 
+            "text": "かすり判定が少し広くなる", "levelRequired": 0, "maxDuplicate": 10, 
             "messages": [{"name": "GrazeEffect", "contents": "ExpandGrazeRadius"}]
         },
         {
@@ -47,7 +47,7 @@
         },
         {
             "price": 12, "priceIncreaseRate": 2.0,
-            "text": "稀に複数回弾とかすれるようになる", "levelRequired": 2, "maxDuplicate": 9999,
+            "text": "稀に複数回弾とかすれるようになる", "levelRequired": 0, "maxDuplicate": 9999,
             "messages": [{"name": "GrazeEffect", "contents": "IncreaseGrazeIgnoreProbability"}]
         }
     ]
