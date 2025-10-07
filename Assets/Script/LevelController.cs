@@ -35,12 +35,17 @@ namespace Nananami
                         instance.globalScheduler.SetVariableImmediate("gameExp", gameExp);
                         if (m_level_up_exp <= gameExp)
                         {
-                            instance.globalScheduler.EnqueueCommand(new AddVariable<int>("gameLevel", 1));
                             instance.globalScheduler.EnqueueCommand(new AddVariable<int>("gameExp", -m_level_up_exp));
-                            m_level_up_exp = (int)(m_level_up_exp * m_level_up_exp_increase_rate);
-                            instance.messageTray.Post("ScoreControllerMessage", "ScoreAddtionIncrease");
+                            instance.messageTray.Post("LevelControllerMessage", "LevelUp");
                             break;
                         }
+                    }
+                    if (messageState == "LevelUp")
+                    {
+                        instance.globalScheduler.EnqueueCommand(new AddVariable<int>("gameLevel", 1));
+                        m_level_up_exp = (int)(m_level_up_exp * m_level_up_exp_increase_rate);
+                        instance.messageTray.Post("ScoreControllerMessage", "ScoreAddtionIncrease");
+                        instance.messageTray.Post("LevelUpUI", "Enable");
                     }
                 }
             }
