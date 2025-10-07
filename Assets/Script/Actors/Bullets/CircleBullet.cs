@@ -27,7 +27,7 @@ namespace Nananami.Actors.Bullets
             bool isGrazed = CommandVariableHelper.GetVariable<bool>(scheduler, "grazed");
             if (isGrazed)
             {
-                if (instance.globalBulletStatus.grazedBulletDeleteScoreProbability <= Random.Range(0.0f, 1.0f))
+                if (instance.globalBulletStatus.grazedBulletDeleteScoreProbability > Random.Range(0.0f, 1.0f))
                 {
                     instance.messageTray.Post("ScoreControllerMessage", "BulletDeleted");
                 }

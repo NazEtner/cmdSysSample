@@ -21,8 +21,8 @@
             "messages": [{"name": "GrazeEffect", "contents": "ExpandGrazeRadius"}]
         },
         {
-            "price": 24, "priceIncreaseRate": 1.8,
-            "text": "弾とかすったとき、稀に画面全体の弾を消すことがある", "levelRequired": 3, "maxDuplicate": 10, 
+            "price": 1820, "priceIncreaseRate": 1.8,
+            "text": "弾とかすったとき、稀に画面全体の弾を消すことがある", "levelRequired": 24, "maxDuplicate": 10, 
             "messages": [{"name": "GrazeEffect", "contents": "IncreaseAllBulletDeletionProbability"}]
         },
         {

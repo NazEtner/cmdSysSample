@@ -1327,7 +1327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed4c091c6bb822e419c9234ec4ea18d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Nananami.ScoreController
-  m_increase_rate: 1.2
+  m_increase_rate: 1.05
   m_bullet_delete_score_rate: 0.5
 --- !u!4 &603795785
 Transform:
