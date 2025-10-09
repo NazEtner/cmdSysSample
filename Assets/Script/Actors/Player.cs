@@ -22,7 +22,7 @@ namespace Nananami.Actors
             if (groupName == "EnemyOrBullet")
             {
                 ((OffScreenAutoDeletable)actor).Damage(100);
-                if (m_hit_permit_count-- <= 0)
+                if (m_hit_permit_count <= 0)
                 {
                     var instance = GameMain.Instance;
                     instance.messageTray.Post("GameOverControllerMessage", "GameOver");
@@ -30,6 +30,7 @@ namespace Nananami.Actors
                 else
                 {
                     ((OffScreenAutoDeletable)actor).Damage(1000); // 無敵時間を実装するのは面倒なので、敵をほぼ確実に倒すようにする(合計1,100ダメージ)
+                    m_hit_permit_count--;
                 }
             }
         }
