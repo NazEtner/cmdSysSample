@@ -22,7 +22,7 @@ namespace Nananami.Actors
             if (groupName == "EnemyOrBullet")
             {
                 ((OffScreenAutoDeletable)actor).Damage(100);
-                if (m_hit_permit_count <= 0)
+                if (m_hit_permit_count-- <= 0)
                 {
                     var instance = GameMain.Instance;
                     instance.messageTray.Post("GameOverControllerMessage", "GameOver");
